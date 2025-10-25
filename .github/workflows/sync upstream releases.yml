@@ -4,7 +4,7 @@
 #     1) 下载上游 release 的所有 assets 到 upstream-assets/<tag>/
 #     2) 在当前仓库创建同名 release（保留 name、body、draft、prerelease）
 #     3) 上传对应的 assets 到新创建的 release
-# - 支持手动触发（workflow_dispatch）和定时触发（每天 UTC 03:00，按需调整）
+# - 支持手动触发（workflow_dispatch）和定时触发（每 6 小时运行一次，按需调整）
 #
 # 使用说明：
 # - 默认从 MoonTechLab/Selene 拉取。若需改变源仓库，可在 "Run workflow" 输入中修改 upstream_owner/upstream_repo。
@@ -26,7 +26,7 @@ on:
         required: false
         default: '100'
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */6 * * *' # 每 6 小时运行一次
 
 concurrency:
   group: sync-upstream-releases
